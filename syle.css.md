@@ -1,0 +1,40 @@
+/* STREAMING_CHUNK:Styling custom scrollbars... */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #070707;
+}
+::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #dc2626;
+}
+
+/* STREAMING_CHUNK:Defining glassmorphism backdrop effects... */
+.glass {
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(239, 68, 68, 0.18);
+}
+
+.glass-card {
+    background: linear-gradient(135deg, rgba(25, 25, 25, 0.9) 0%, rgba(12, 12, 12, 0.95) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* STREAMING_CHUNK:Configuring ambient background glows... */
+.hero-blob {
+    filter: blur(80px);
+    opacity: 0.18;
+    pointer-events: none;
+}
+
+.slant-banner {
+    clip-path: polygon(0 0, 100% 4%, 100% 96%, 0 100%);
+}
