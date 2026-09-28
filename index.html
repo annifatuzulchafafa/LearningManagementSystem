@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS SMK - Portal Pembelajaran & Studio Kreatif</title>
+    <title>LMS SMK - Portal Pembelajaran & Studio Kreatif Broadcasting</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icon -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -37,21 +37,23 @@
             }
         };
     </script>
+    
     <style>
         body {
             background-color: #070707;
             color: #f8fafc;
         }
         .glass {
-            background: rgba(18, 18, 18, 0.75);
+            background: rgba(18, 18, 18, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .glass-card {
-            background: rgba(24, 24, 27, 0.6);
+            background: rgba(24, 24, 27, 0.7);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .hero-blob {
             filter: blur(90px);
@@ -71,12 +73,15 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #ef4444;
         }
+        .vignette-overlay {
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 glass border-b border-neutral-800 shadow-2xl">
+    <header class="sticky top-0 z-40 glass border-b border-neutral-800 shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3.5 cursor-pointer group" onclick="switchTab('home')">
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-red-700 via-rose-600 to-red-500 flex items-center justify-center shadow-glow group-hover:scale-105 transition duration-300">
@@ -100,6 +105,28 @@
                     <i class="fa-solid fa-palette text-red-500"></i> Color Grading
                 </button>
             </nav>
+
+            <div class="md:hidden">
+                <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-neutral-900 text-slate-300 hover:text-white border border-neutral-800">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-neutral-800 bg-neutral-950 px-4 py-4 space-y-2">
+            <button onclick="switchTab('home')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-neutral-900 flex items-center gap-2">
+                <i class="fa-solid fa-house text-red-500"></i> Beranda
+            </button>
+            <button onclick="switchTab('courses')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-neutral-900 flex items-center gap-2">
+                <i class="fa-solid fa-file-pdf text-red-500"></i> Modul PDF SMK
+            </button>
+            <button onclick="switchTab('generator')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-neutral-900 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-red-500"></i> Naskah & Storyboard
+            </button>
+            <button onclick="switchTab('studio')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-neutral-900 flex items-center gap-2">
+                <i class="fa-solid fa-palette text-red-500"></i> Color Grading Studio
+            </button>
         </div>
     </header>
 
@@ -115,7 +142,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
                         <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-red-600/10 border border-red-500/25 text-red-400 text-xs font-bold backdrop-blur-md shadow-lg">
-                            <i class="fa-solid fa-circle-check text-red-500 animate-pulse"></i> Modul 1: Pra-Produksi Siap Diunduh
+                            <i class="fa-solid fa-circle-check text-red-500 animate-pulse"></i> Semua Modul Pembelajaran Siap Diunduh
                         </div>
                         <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
                             Pusat Belajar <span class="bg-gradient-to-r from-red-500 via-rose-500 to-orange-500 bg-clip-text text-transparent">Videografi & Perfilman</span>
@@ -142,7 +169,7 @@
                                         <i class="fa-solid fa-file-pdf"></i>
                                     </div>
                                     <div>
-                                        <span class="text-[10px] text-red-500 font-extrabold uppercase tracking-wider block">Modul 1 dari 3</span>
+                                        <span class="text-[10px] text-red-500 font-extrabold uppercase tracking-wider block">Modul Utama</span>
                                         <h4 class="text-sm font-bold text-white">Pra-Produksi: Penulisan Naskah & Storyboard</h4>
                                     </div>
                                 </div>
@@ -177,8 +204,8 @@
                 <!-- DAFTAR 3 KARTU MODUL -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    <!-- MODUL 1: PRA-PRODUKSI (AKTIF) -->
-                    <div class="glass-card rounded-3xl p-6 border border-red-600/40 space-y-5 flex flex-col justify-between shadow-2xl relative">
+                    <!-- MODUL 1: PRA-PRODUKSI -->
+                    <div class="glass-card rounded-3xl p-6 border border-red-600/40 space-y-5 flex flex-col justify-between shadow-2xl relative group hover:border-red-500 transition">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
                                 <span class="px-3 py-1 rounded-full bg-red-600/20 text-red-400 text-[10px] font-extrabold uppercase">Modul 1</span>
@@ -210,80 +237,86 @@
                         </div>
                     </div>
 
-                    <!-- MODUL 2: PRODUKSI (PENGEMBANGAN / SEGERA HADIR) -->
-                    <div class="glass-card rounded-3xl p-6 border border-neutral-800 space-y-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition">
+                    <!-- MODUL 2: PRODUKSI (PENGOPERASIAN KAMERA & PENCAHAYAAN) -->
+                    <div class="glass-card rounded-3xl p-6 border border-red-600/40 space-y-5 flex flex-col justify-between shadow-2xl relative group hover:border-red-500 transition">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
-                                <span class="px-3 py-1 rounded-full bg-neutral-800 text-slate-400 text-[10px] font-extrabold uppercase">Modul 2</span>
-                                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 text-[10px] font-bold border border-amber-500/20">
-                                    <i class="fa-solid fa-clock mr-1"></i>Segera Hadir
+                                <span class="px-3 py-1 rounded-full bg-red-600/20 text-red-400 text-[10px] font-extrabold uppercase">Modul 2</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+                                    <i class="fa-solid fa-check mr-1"></i>Tersedia
                                 </span>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-neutral-800 text-slate-400 flex items-center justify-center font-bold flex-shrink-0">
+                                <div class="w-10 h-10 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold flex-shrink-0">
                                     <i class="fa-solid fa-camera-video"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-base font-bold text-slate-200">Produksi: Pengoperasian Kamera & Pencahayaan</h3>
-                                    <p class="text-[11px] text-slate-500 font-mono mt-0.5">modul-produksi.pdf</p>
+                                    <h3 class="text-base font-bold text-white">Produksi: Pengoperasian Kamera & Pencahayaan</h3>
+                                    <p class="text-[11px] text-red-400 font-mono mt-0.5">modul-produksi.pdf</p>
                                 </div>
                             </div>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <p class="text-xs text-slate-300 leading-relaxed">
                                 Panduan operasional teknik pengambilan gambar sinematik, komposisi framing, dan tata cahaya 3-Point Lighting.
                             </p>
                         </div>
 
                         <div class="space-y-2 pt-3 border-t border-neutral-800">
-                            <button disabled class="w-full py-3 rounded-xl bg-neutral-900 text-slate-500 font-bold text-xs border border-neutral-800 cursor-not-allowed flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-lock"></i> Modul Belum Tersedia
+                            <button onclick="bukaModulPdf('modul-produksi.pdf', 'Produksi: Pengoperasian Kamera & Pencahayaan')" class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-glow-sm transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Baca Modul
                             </button>
+                            <a href="modul-produksi.pdf" download class="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-slate-300 font-bold text-xs border border-neutral-800 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download text-red-500"></i> Unduh File
+                            </a>
                         </div>
                     </div>
 
-                    <!-- MODUL 3: PASCA-PRODUKSI (PENGEMBANGAN / SEGERA HADIR) -->
-                    <div class="glass-card rounded-3xl p-6 border border-neutral-800 space-y-5 flex flex-col justify-between opacity-80 hover:opacity-100 transition">
+                    <!-- MODUL 3: PASCA-PRODUKSI (EDITING VIDEO & COLOR GRADING) -->
+                    <div class="glass-card rounded-3xl p-6 border border-red-600/40 space-y-5 flex flex-col justify-between shadow-2xl relative group hover:border-red-500 transition">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
-                                <span class="px-3 py-1 rounded-full bg-neutral-800 text-slate-400 text-[10px] font-extrabold uppercase">Modul 3</span>
-                                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 text-[10px] font-bold border border-amber-500/20">
-                                    <i class="fa-solid fa-clock mr-1"></i>Segera Hadir
+                                <span class="px-3 py-1 rounded-full bg-red-600/20 text-red-400 text-[10px] font-extrabold uppercase">Modul 3</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+                                    <i class="fa-solid fa-check mr-1"></i>Tersedia
                                 </span>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-neutral-800 text-slate-400 flex items-center justify-center font-bold flex-shrink-0">
+                                <div class="w-10 h-10 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold flex-shrink-0">
                                     <i class="fa-solid fa-sliders"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-base font-bold text-slate-200">Pasca-Produksi: Editing Video & Color Grading</h3>
-                                    <p class="text-[11px] text-slate-500 font-mono mt-0.5">modul-pasca-produksi.pdf</p>
+                                    <h3 class="text-base font-bold text-white">Pasca-Produksi: Editing Video & Color Grading</h3>
+                                    <p class="text-[11px] text-red-400 font-mono mt-0.5">modul-pasca-produksi.pdf</p>
                                 </div>
                             </div>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <p class="text-xs text-slate-300 leading-relaxed">
                                 Modul teknik penyuntingan gambar, pemotongan ritmis, penataan audio, dan pewarnaan film (Color Grading).
                             </p>
                         </div>
 
                         <div class="space-y-2 pt-3 border-t border-neutral-800">
-                            <button disabled class="w-full py-3 rounded-xl bg-neutral-900 text-slate-500 font-bold text-xs border border-neutral-800 cursor-not-allowed flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-lock"></i> Modul Belum Tersedia
+                            <button onclick="bukaModulPdf('modul-pasca-produksi.pdf', 'Pasca-Produksi: Editing Video & Color Grading')" class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-glow-sm transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Baca Modul
                             </button>
+                            <a href="modul-pasca-produksi.pdf" download class="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-slate-300 font-bold text-xs border border-neutral-800 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download text-red-500"></i> Unduh File
+                            </a>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- EMBEDDED VIEWER LANGSUNG UNTUK MODUL 1 -->
-                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-neutral-800 space-y-6 shadow-2xl">
+                <!-- EMBEDDED VIEWER LANGSUNG UNTUK MODUL -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-neutral-800 space-y-6 shadow-2xl" id="embeddedViewerContainer">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
                         <div>
                             <span class="text-xs text-red-500 font-bold uppercase tracking-wider">Pratinjau Modul Aktif</span>
-                            <h3 class="text-lg font-bold text-white">Pra-Produksi: Penulisan Naskah & Storyboard</h3>
+                            <h3 id="currentViewerTitle" class="text-lg font-bold text-white">Pra-Produksi: Penulisan Naskah & Storyboard</h3>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="bukaModulPdf('modul-pra-produksi.pdf', 'Pra-Produksi: Penulisan Naskah & Storyboard')" class="px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-bold text-xs border border-neutral-800 transition flex items-center gap-2">
+                            <button onclick="openFullModalFromViewer()" class="px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-bold text-xs border border-neutral-800 transition flex items-center gap-2">
                                 <i class="fa-solid fa-expand text-red-500"></i> Mode Pop-up Full
                             </button>
-                            <a href="modul-pra-produksi.pdf" download class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-glow-sm transition flex items-center gap-2">
+                            <a id="currentViewerDownload" href="modul-pra-produksi.pdf" download class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-glow-sm transition flex items-center gap-2">
                                 <i class="fa-solid fa-download"></i> Unduh PDF
                             </a>
                         </div>
@@ -363,7 +396,7 @@
                                 <span id="outputStatusTag" class="text-xs px-3 py-1 rounded-full bg-neutral-900 text-slate-400 font-mono border border-neutral-800">Menunggu Input...</span>
                             </div>
 
-                            <div id="instantOutputBox" class="bg-black/90 border border-neutral-900 rounded-2xl p-5 min-h-[350px] max-h-[450px] overflow-y-auto space-y-4 font-mono text-xs text-slate-300 leading-relaxed shadow-inner">
+                            <div id="instantOutputBox" class="bg-black/90 border border-neutral-900 rounded-2xl p-5 min-h-[350px] max-h-[450px] overflow-y-auto space-y-4 font-mono text-xs text-slate-300 leading-relaxed shadow-inner select-text">
                                 <div class="text-center text-slate-500 py-24 space-y-2">
                                     <i class="fa-solid fa-clapperboard text-4xl text-neutral-800"></i>
                                     <p>Isi formulir di sebelah kiri dan klik tombol <b>Susun Format Naskah</b>.</p>
@@ -394,11 +427,12 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Live Viewfinder Container -->
                     <div class="lg:col-span-7 glass-card rounded-3xl p-6 border border-neutral-800 space-y-4 shadow-2xl">
                         <div class="flex items-center justify-between flex-wrap gap-2">
                             <span class="text-xs font-semibold text-red-500 uppercase flex items-center gap-1.5"><i class="fa-solid fa-circle text-[8px] animate-pulse"></i> Live Preview Studio</span>
                             <div class="flex items-center gap-2">
-                                <label for="mediaUpload" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-xs cursor-pointer transition shadow-glow-sm flex items-center gap-1.5">
+                                <label for="mediaUpload" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-xs cursor-pointer transition shadow-glow-sm flex items-center gap-1.5 hover:opacity-90">
                                     <i class="fa-solid fa-upload"></i> Unggah File Baru
                                 </label>
                                 <input type="file" id="mediaUpload" accept="image/*,video/*" class="hidden" onchange="handleMediaUpload(event)">
@@ -408,44 +442,92 @@
                             </div>
                         </div>
 
-                        <div id="viewfinderFrame" class="relative w-full aspect-video rounded-2xl bg-black overflow-hidden flex items-center justify-center border border-neutral-800">
-                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-300" id="simMediaContainer">
-                                <video id="simVideoElement" class="w-full h-full object-cover hidden" muted loop playsinline></video>
-                            </div>
-                            <div id="colorGradeOverlay" class="absolute inset-0 pointer-events-none transition-all duration-300" style="mix-blend-mode: overlay; background-color: rgba(220, 38, 38, 0.1);"></div>
+                        <!-- Canvas Frame Viewport -->
+                        <div id="viewfinderFrame" class="relative w-full aspect-video rounded-2xl bg-black overflow-hidden flex items-center justify-center border border-neutral-800 group">
+                            <!-- Background Image Preview -->
+                            <img id="simImageElement" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80" alt="Sample Media" class="w-full h-full object-cover transition-all duration-200">
+                            <!-- Background Video Preview (Hidden by default) -->
+                            <video id="simVideoElement" class="w-full h-full object-cover hidden" muted loop playsinline></video>
+                            
+                            <!-- Vignette & Tint Overlays -->
+                            <div id="colorGradeOverlay" class="absolute inset-0 pointer-events-none transition-all duration-200"></div>
+                            <div id="vignetteOverlay" class="absolute inset-0 pointer-events-none transition-all duration-200 hidden vignette-overlay"></div>
                         </div>
                     </div>
 
-                    <!-- Panel Slider -->
+                    <!-- Panel Controls Slider -->
                     <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 border border-neutral-800 space-y-5 shadow-2xl">
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-sliders text-red-500"></i> Pengaturan Filter Warna
-                        </h3>
-
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-slate-300">Preset Cinematic LUT</label>
-                            <select id="selectLUT" onchange="updateColorGrading()" class="w-full bg-neutral-950 border border-neutral-800 rounded-2xl px-4 py-3 text-xs text-white focus:outline-none focus:border-red-600 transition">
-                                <option value="tealOrange">Teal & Orange (Hollywood)</option>
-                                <option value="cyberpunk">Cyberpunk Neon (Sci-Fi)</option>
-                                <option value="noir">Noir Monokrom (Klasik)</option>
-                                <option value="warmCinematic">Warm Golden Hour (Drama)</option>
-                            </select>
+                        <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-sliders text-red-500"></i> Pengaturan Filter Warna
+                            </h3>
+                            <button onclick="resetGrading()" class="text-xs text-slate-400 hover:text-white underline">Reset All</button>
                         </div>
 
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs font-bold">
-                                <span class="text-slate-300">Kontras</span>
-                                <span id="valContrast" class="text-red-500">110%</span>
+                        <div class="space-y-4">
+                            <!-- LUT Selection -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-300">Preset Cinematic LUT</label>
+                                <select id="selectLUT" onchange="applyColorGrading()" class="w-full bg-neutral-950 border border-neutral-800 rounded-2xl px-4 py-3 text-xs text-white focus:outline-none focus:border-red-600 transition">
+                                    <option value="none">Standard (Default)</option>
+                                    <option value="teal-orange">Teal & Orange (Hollywood Action)</option>
+                                    <option value="cyberpunk">Cyberpunk Neon Night</option>
+                                    <option value="warm-vintage">Warm Vintage Retro</option>
+                                    <option value="film-noir">Noir Dramatic B&W</option>
+                                    <option value="cold-thriller">Cold Thriller Blue</option>
+                                </select>
                             </div>
-                            <input type="range" id="rangeContrast" min="50" max="150" value="110" step="5" oninput="updateColorGrading()" class="w-full accent-red-600 bg-neutral-800 rounded-lg h-2 cursor-pointer">
-                        </div>
 
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs font-bold">
-                                <span class="text-slate-300">Saturasi</span>
-                                <span id="valSaturation" class="text-red-500">120%</span>
+                            <!-- Exposure / Brightness Slider -->
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs text-slate-300">
+                                    <span>Exposure (Kecerahan)</span>
+                                    <span id="valBrightness" class="font-mono text-red-400">100%</span>
+                                </div>
+                                <input type="range" id="sliderBrightness" min="50" max="150" value="100" oninput="applyColorGrading()" class="w-full accent-red-600 h-1.5 bg-neutral-900 rounded-lg cursor-pointer">
                             </div>
-                            <input type="range" id="rangeSaturation" min="0" max="200" value="120" step="5" oninput="updateColorGrading()" class="w-full accent-red-600 bg-neutral-800 rounded-lg h-2 cursor-pointer">
+
+                            <!-- Contrast Slider -->
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs text-slate-300">
+                                    <span>Kontras</span>
+                                    <span id="valContrast" class="font-mono text-red-400">100%</span>
+                                </div>
+                                <input type="range" id="sliderContrast" min="50" max="200" value="100" oninput="applyColorGrading()" class="w-full accent-red-600 h-1.5 bg-neutral-900 rounded-lg cursor-pointer">
+                            </div>
+
+                            <!-- Saturation Slider -->
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs text-slate-300">
+                                    <span>Saturasi Warna</span>
+                                    <span id="valSaturate" class="font-mono text-red-400">100%</span>
+                                </div>
+                                <input type="range" id="sliderSaturate" min="0" max="250" value="100" oninput="applyColorGrading()" class="w-full accent-red-600 h-1.5 bg-neutral-900 rounded-lg cursor-pointer">
+                            </div>
+
+                            <!-- Temperature / Hue Slider -->
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs text-slate-300">
+                                    <span>Temperature / Hue (Warna)</span>
+                                    <span id="valHue" class="font-mono text-red-400">0°</span>
+                                </div>
+                                <input type="range" id="sliderHue" min="-180" max="180" value="0" oninput="applyColorGrading()" class="w-full accent-red-600 h-1.5 bg-neutral-900 rounded-lg cursor-pointer">
+                            </div>
+
+                            <!-- Blur Effect -->
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs text-slate-300">
+                                    <span>Cinematic Blur (Depth of Field)</span>
+                                    <span id="valBlur" class="font-mono text-red-400">0px</span>
+                                </div>
+                                <input type="range" id="sliderBlur" min="0" max="10" value="0" step="0.5" oninput="applyColorGrading()" class="w-full accent-red-600 h-1.5 bg-neutral-900 rounded-lg cursor-pointer">
+                            </div>
+
+                            <!-- Vignette Checkbox -->
+                            <div class="flex items-center justify-between pt-2">
+                                <label class="text-xs font-bold text-slate-300 cursor-pointer" for="checkVignette">Efek Vignette Sinematik</label>
+                                <input type="checkbox" id="checkVignette" onchange="applyColorGrading()" class="w-4 h-4 accent-red-600 rounded cursor-pointer">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -454,241 +536,409 @@
 
     </main>
 
-    <!-- POP-UP MODAL VIEWER PDF UNIVERSAL -->
-    <div id="pdfModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6">
-        <div class="glass max-w-5xl w-full h-[85vh] rounded-3xl overflow-hidden border border-neutral-800 p-6 flex flex-col justify-between relative shadow-2xl">
-            <!-- Header Modal -->
-            <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
-                <div class="flex items-center gap-2.5">
-                    <i class="fa-solid fa-file-pdf text-red-500 text-lg"></i>
+    <!-- PDF MODAL POP-UP VIEWER -->
+    <div id="pdfModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6">
+        <div class="w-full max-w-6xl h-full flex flex-col bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
                     <div>
-                        <h3 id="modalPdfTitle" class="text-base font-bold text-white">Pratinjau Modul PDF</h3>
-                        <span id="modalPdfFilename" class="text-xs text-slate-400 font-mono">modul.pdf</span>
+                        <h3 id="modalPdfTitle" class="text-sm sm:text-base font-bold text-white">Pratinjau Modul PDF</h3>
+                        <p id="modalPdfSub" class="text-[11px] text-red-400 font-mono">File PDF Pembelajaran</p>
                     </div>
                 </div>
-                <button onclick="tutupPdfModal()" class="w-8 h-8 rounded-xl bg-neutral-900 text-slate-300 hover:text-white flex items-center justify-center transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <div class="flex items-center gap-3">
+                    <a id="modalDownloadBtn" href="#" download class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> Unduh
+                    </a>
+                    <button onclick="closePdfModal()" class="w-9 h-9 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
-
-            <!-- Frame Pratinjau PDF -->
-            <div class="w-full flex-grow my-3 bg-black rounded-2xl overflow-hidden border border-neutral-800">
-                <iframe id="modalPdfIframe" src="" class="w-full h-full border-0">
-                    Browser Anda tidak mendukung iframe PDF. Silakan unduh file melalui tombol di bawah.
-                </iframe>
-            </div>
-
-            <!-- Footer Modal -->
-            <div class="flex items-center justify-between pt-2 border-t border-neutral-800">
-                <span class="text-xs text-slate-400">Modul Pembelajaran Resmi SMK</span>
-                <a id="modalPdfDownloadBtn" href="#" download class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-glow-sm transition flex items-center gap-2">
-                    <i class="fa-solid fa-download"></i> Unduh PDF
-                </a>
+            <!-- Modal Body iFrame -->
+            <div class="flex-grow w-full bg-neutral-900">
+                <iframe id="modalPdfIframe" src="" class="w-full h-full border-0"></iframe>
             </div>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION -->
-    <div id="customToast" class="fixed bottom-6 right-6 z-50 hidden max-w-sm glass bg-neutral-950/95 border border-red-600/40 p-4 rounded-2xl shadow-2xl flex items-start gap-3">
-        <div class="w-8 h-8 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center flex-shrink-0 text-sm font-bold">
-            <i class="fa-solid fa-circle-info"></i>
-        </div>
-        <div class="space-y-1">
-            <h4 class="text-sm font-bold text-white">Informasi Sistem</h4>
-            <p id="toastMessage" class="text-xs text-slate-300">Pesan notifikasi.</p>
-        </div>
-        <button onclick="document.getElementById('customToast').classList.add('hidden')" class="text-slate-400 hover:text-white text-sm"><i class="fa-solid fa-xmark"></i></button>
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden bg-neutral-900 border border-red-500/40 text-white px-5 py-3 rounded-2xl shadow-glow-sm flex items-center gap-3 transition">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-red-500"></i>
+        <span id="toastMessage" class="text-xs font-bold">Pesan Notifikasi</span>
     </div>
 
     <!-- FOOTER -->
-    <footer class="border-t border-neutral-900 bg-black py-8 text-slate-400 text-xs">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>© 2026 Kurikulum SMK Videografi & Perfilman.</p>
+    <footer class="glass border-t border-neutral-800 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+            <p class="text-xs text-slate-400">&copy; 2026 LMS Broadcasting & Produksi Film SMK. Semua Hak Cipta Dilindungi.</p>
+            <div class="flex justify-center space-x-6 text-xs text-slate-400">
+                <span>Modul 1: Pra-Produksi</span>
+                <span>Modul 2: Produksi</span>
+                <span>Modul 3: Pasca-Produksi</span>
+            </div>
         </div>
     </footer>
 
-    <!-- LOGIKA JAVASCRIPT & PENGATURAN FILE -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        const SAMPLE_IMAGE_URL = "https://placehold.co/800x450/0f0505/ef4444?text=Praktikum+Color+Grading+SMK";
-        let currentUploadedImageSrc = SAMPLE_IMAGE_URL;
+        let currentActivePdf = 'modul-pra-produksi.pdf';
+        let currentActivePdfTitle = 'Pra-Produksi: Penulisan Naskah & Storyboard';
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('simMediaContainer').style.backgroundImage = `url('${currentUploadedImageSrc}')`;
-        });
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.view-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
 
-        // FUNGSI MEMBUKA MODAL PDF VIEWER (Dapat menerima file PDF manapun)
-        function bukaModulPdf(namaFilePdf, judulModul) {
-            document.getElementById('modalPdfTitle').innerText = judulModul;
-            document.getElementById('modalPdfFilename').innerText = namaFilePdf;
+            // Show selected section
+            const targetSection = document.getElementById(`view-${tabName}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
 
-            // Set sumber PDF ke iframe & link download
-            document.getElementById('modalPdfIframe').src = namaFilePdf;
-            document.getElementById('modalPdfDownloadBtn').href = namaFilePdf;
-
-            const modal = document.getElementById('pdfModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        // FUNGSI MENUTUP MODAL PDF VIEWER
-        function tutupPdfModal() {
-            const modal = document.getElementById('pdfModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.getElementById('modalPdfIframe').src = '';
-        }
-
-        // FUNGSI NAVIGASI TAB
-        function switchTab(tabId) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-            document.getElementById('view-' + tabId).classList.remove('hidden');
-
-            ['home', 'courses', 'generator', 'studio'].forEach(t => {
-                const btn = document.getElementById('nav-' + t);
-                if(btn) {
-                    if(t === tabId) {
-                        btn.className = "px-5 py-2 rounded-full text-xs font-bold text-red-500 bg-red-600/15 shadow-sm transition";
+            // Update header navigation active styles
+            const navIds = ['home', 'courses', 'generator', 'studio'];
+            navIds.forEach(id => {
+                const navBtn = document.getElementById(`nav-${id}`);
+                if (navBtn) {
+                    if (id === tabName) {
+                        navBtn.className = 'px-5 py-2 rounded-full text-xs font-bold text-red-500 bg-red-600/15 shadow-sm transition';
                     } else {
-                        btn.className = "px-5 py-2 rounded-full text-xs font-medium text-slate-300 transition hover:text-white hover:bg-neutral-900";
+                        navBtn.className = 'px-5 py-2 rounded-full text-xs font-medium text-slate-300 transition hover:text-white hover:bg-neutral-900 flex items-center gap-1.5';
                     }
                 }
             });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // TOAST NOTIFIKASI
-        function showToast(msg) {
-            document.getElementById('toastMessage').innerText = msg;
-            const toast = document.getElementById('customToast');
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3500);
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+            }
         }
 
-        // FUNGSI ISIAN CONTOH NASKAH
+        function bukaModulPdf(pdfFile, pdfTitle) {
+            currentActivePdf = pdfFile;
+            currentActivePdfTitle = pdfTitle;
+
+            // Update embedded viewer in courses tab
+            const embeddedTitle = document.getElementById('currentViewerTitle');
+            const embeddedIframe = document.getElementById('mainPdfIframe');
+            const embeddedDownload = document.getElementById('currentViewerDownload');
+
+            if (embeddedTitle) embeddedTitle.innerText = pdfTitle;
+            if (embeddedIframe) embeddedIframe.src = pdfFile;
+            if (embeddedDownload) embeddedDownload.href = pdfFile;
+
+            // Open full modal dialog
+            openPdfModal(pdfFile, pdfTitle);
+        }
+
+        function openPdfModal(pdfFile, pdfTitle) {
+            const modal = document.getElementById('pdfModal');
+            const modalTitle = document.getElementById('modalPdfTitle');
+            const modalSub = document.getElementById('modalPdfSub');
+            const modalIframe = document.getElementById('modalPdfIframe');
+            const modalDownload = document.getElementById('modalDownloadBtn');
+
+            if (modalTitle) modalTitle.innerText = pdfTitle;
+            if (modalSub) modalSub.innerText = pdfFile;
+            if (modalIframe) modalIframe.src = pdfFile;
+            if (modalDownload) modalDownload.href = pdfFile;
+
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function openFullModalFromViewer() {
+            openPdfModal(currentActivePdf, currentActivePdfTitle);
+        }
+
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            const modalIframe = document.getElementById('modalPdfIframe');
+            if (modal) modal.classList.add('hidden');
+            if (modalIframe) modalIframe.src = '';
+        }
+
         function fillSampleScript() {
-            document.getElementById('scriptSlugline').value = "INT. KELAS MULTIMEDIA - SIANG";
-            document.getElementById('scriptAction').value = "Siswa kelas XII menyiapkan kamera DSLR di atas tripod, memperhatikan arah pencahayaan.";
-            document.getElementById('scriptCharacter').value = "BIMO";
-            document.getElementById('scriptParenthetical').value = "(tersenyum antusias)";
-            document.getElementById('scriptDialog').value = "Teman-teman, pastikan sudut pengambilan gambar angle ini presisi agar visualnya sinematik!";
-            document.getElementById('scriptVoice').value = "Narator (VO): Belajar videografi mendidik siswa berfikir kreatif dan teliti.";
-            showToast('Contoh naskah berhasil dimasukkan!');
+            document.getElementById('scriptSlugline').value = 'INT. STUDIO BROADCASTING - SIANG';
+            document.getElementById('scriptAction').value = 'BIMO dan SITI mengatur posisi kamera utama. Lampu Key Light dan Fill Light telah dinyalakan dengan intensitas presisi.';
+            document.getElementById('scriptCharacter').value = 'BIMO (17)';
+            document.getElementById('scriptParenthetical').value = '(menatap viewfinder kamera)';
+            document.getElementById('scriptDialog').value = 'Siti, atur aperture di f/2.8 agar background-nya mendapatkan bokeh yang sinematik!';
+            document.getElementById('scriptVoice').value = 'Narator (VO): Penguasaan pencahayaan dan framing adalah kunci visual dalam produksi perfilman SMK.';
+            
+            showToast('Contoh naskah berhasil dimuat!');
         }
 
-        // FUNGSI SUSUN NASKAH
         function generateStructuredScript() {
-            const slug = document.getElementById('scriptSlugline').value.trim() || "INT. STUDIO FILM - PAGI";
-            const action = document.getElementById('scriptAction').value.trim() || "Kamera menyorot suasana ruang studio praktik.";
-            const character = document.getElementById('scriptCharacter').value.trim() || "SISWA SMK";
-            const parenthetical = document.getElementById('scriptParenthetical').value.trim() || "(fokus)";
-            const dialog = document.getElementById('scriptDialog').value.trim() || "Mari kita mulai proses pengambilan gambar.";
-            const voice = document.getElementById('scriptVoice').value.trim() || "Narator (VO): Kreativitas tanpa batas.";
+            const slugline = document.getElementById('scriptSlugline').value || 'INT. KELAS MULTIMEDIA - SIANG';
+            const action = document.getElementById('scriptAction').value || 'Siswa mengoperasikan perangkat studio broadcasting.';
+            const character = document.getElementById('scriptCharacter').value || 'SISWA (17)';
+            const parenthetical = document.getElementById('scriptParenthetical').value || '(antusias)';
+            const dialog = document.getElementById('scriptDialog').value || 'Proses perekaman video siap dimulai!';
+            const voice = document.getElementById('scriptVoice').value || 'Narator (VO): Dunia penyiaran membutuhkan kedisiplinan dan kreativitas tinggi.';
 
             const outputBox = document.getElementById('instantOutputBox');
             const statusTag = document.getElementById('outputStatusTag');
 
-            statusTag.innerText = "Format Siap Kumpul";
-            statusTag.className = "text-xs px-3 py-1 rounded-full bg-red-600/20 text-red-500 font-mono";
-
-            outputBox.innerHTML = `
-                <div class="text-red-500 font-bold border-b border-neutral-900 pb-2 mb-3">
-                    [FORMAT NASKAH STANDAR INDUSTRI]
-                </div>
-                <div class="space-y-3">
-                    <p class="font-bold text-white uppercase">${slug}</p>
-                    <p class="text-slate-300">${action}</p>
-                    <div class="pl-4 border-l-2 border-red-600 space-y-0.5">
-                        <p class="font-bold text-rose-400 uppercase">${character}</p>
-                        <p class="text-slate-400 italic text-[11px]">${parenthetical}</p>
-                        <p class="text-white">"${dialog}"</p>
+            const formattedHtml = `
+                <div class="space-y-4 text-slate-200">
+                    <p class="font-extrabold text-red-500 tracking-wider">${slugline.toUpperCase()}</p>
+                    <p class="text-slate-300 leading-relaxed pl-2 border-l-2 border-neutral-800">${action}</p>
+                    <div class="text-center my-3 space-y-1">
+                        <p class="font-bold text-white tracking-widest">${character.toUpperCase()}</p>
+                        ${parenthetical ? `<p class="text-slate-400 text-[11px] italic">${parenthetical}</p>` : ''}
+                        <p class="text-slate-200 max-w-sm mx-auto leading-relaxed">"${dialog}"</p>
                     </div>
-                    <p class="text-slate-400 italic">${voice}</p>
+                    ${voice ? `
+                        <div class="bg-neutral-900/80 p-3 rounded-xl border border-neutral-800/80 mt-4">
+                            <p class="text-red-400 font-bold text-[11px] uppercase tracking-wider mb-1"><i class="fa-solid fa-microphone mr-1"></i> Voice Over / Sound Track</p>
+                            <p class="text-slate-300 italic">${voice}</p>
+                        </div>
+                    ` : ''}
                 </div>
             `;
-            showToast('Format naskah berhasil disusun!');
+
+            if (outputBox) outputBox.innerHTML = formattedHtml;
+            if (statusTag) {
+                statusTag.innerText = 'Format Dihasilkan';
+                statusTag.className = 'text-xs px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-mono border border-emerald-500/30';
+            }
+
+            showToast('Naskah berhasil diformat!');
         }
 
-        // SALIN NASKAH
         function copyToClipboard() {
-            const box = document.getElementById('instantOutputBox');
-            navigator.clipboard.writeText(box.innerText).then(() => {
-                showToast('Naskah berhasil disalin ke Clipboard!');
-            }).catch(() => {
-                showToast('Gagal menyalin teks.');
-            });
+            const outputBox = document.getElementById('instantOutputBox');
+            if (!outputBox) return;
+
+            const textToCopy = outputBox.innerText;
+            if (textToCopy.includes('Isi formulir di sebelah kiri')) {
+                showToast('Isi dan buat naskah terlebih dahulu!', 'warning');
+                return;
+            }
+
+            // Fallback clipboard method
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            showToast('Teks naskah berhasil disalin!');
         }
 
-        // UNDUH DOCX NASKAH
         function downloadAsDocx() {
-            const box = document.getElementById('instantOutputBox').innerText;
-            const blob = new Blob([box], { type: 'application/msword' });
+            const outputBox = document.getElementById('instantOutputBox');
+            if (!outputBox) return;
+
+            const content = outputBox.innerHTML;
+            if (content.includes('Isi formulir di sebelah kiri')) {
+                showToast('Isi dan buat naskah terlebih dahulu!', 'warning');
+                return;
+            }
+
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Naskah Broadcasting</title></head><body>";
+            const footer = "</body></html>";
+            const sourceHTML = header + content + footer;
+
+            const blob = new Blob(['\ufeff', sourceHTML], { type: 'application/msword' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'Naskah_Film_SMK.doc';
+            a.download = 'naskah-broadcasting-smk.doc';
+            document.body.appendChild(a);
             a.click();
-            URL.revokeObjectURL(url);
-            showToast('File dokumen (.doc) berhasil diunduh!');
+            document.body.removeChild(a);
+
+            showToast('File naskah (.doc) diunduh!');
         }
 
-        // UPLOAD MEDIA UNTUK COLOR GRADING
         function handleMediaUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
 
-            const url = URL.createObjectURL(file);
-            currentUploadedImageSrc = url;
-            const container = document.getElementById('simMediaContainer');
+            const imgEl = document.getElementById('simImageElement');
             const videoEl = document.getElementById('simVideoElement');
 
+            const fileURL = URL.createObjectURL(file);
+
             if (file.type.startsWith('video/')) {
-                container.style.backgroundImage = 'none';
-                videoEl.src = url;
-                videoEl.classList.remove('hidden');
-                videoEl.play();
-                showToast('Video berhasil dimuat ke simulator!');
+                if (imgEl) imgEl.classList.add('hidden');
+                if (videoEl) {
+                    videoEl.src = fileURL;
+                    videoEl.classList.remove('hidden');
+                    videoEl.play();
+                }
             } else {
-                videoEl.pause();
-                videoEl.classList.add('hidden');
-                container.style.backgroundImage = `url('${url}')`;
-                showToast('Foto berhasil dimuat ke simulator!');
+                if (videoEl) {
+                    videoEl.pause();
+                    videoEl.classList.add('hidden');
+                }
+                if (imgEl) {
+                    imgEl.src = fileURL;
+                    imgEl.classList.remove('hidden');
+                }
+            }
+
+            showToast('Media baru berhasil diunggah!');
+            applyColorGrading();
+        }
+
+        function applyColorGrading() {
+            const lut = document.getElementById('selectLUT').value;
+            const brightness = document.getElementById('sliderBrightness').value;
+            const contrast = document.getElementById('sliderContrast').value;
+            const saturate = document.getElementById('sliderSaturate').value;
+            const hue = document.getElementById('sliderHue').value;
+            const blur = document.getElementById('sliderBlur').value;
+            const isVignette = document.getElementById('checkVignette').checked;
+
+            // Update UI value labels
+            document.getElementById('valBrightness').innerText = `${brightness}%`;
+            document.getElementById('valContrast').innerText = `${contrast}%`;
+            document.getElementById('valSaturate').innerText = `${saturate}%`;
+            document.getElementById('valHue').innerText = `${hue}°`;
+            document.getElementById('valBlur').innerText = `${blur}px`;
+
+            // Prepare CSS Filter String
+            let filterCss = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg) blur(${blur}px)`;
+
+            // Get LUT Color Overlay settings
+            const overlay = document.getElementById('colorGradeOverlay');
+            let overlayColor = 'transparent';
+            let blendMode = 'normal';
+
+            switch (lut) {
+                case 'teal-orange':
+                    overlayColor = 'rgba(0, 180, 216, 0.25)';
+                    blendMode = 'color-burn';
+                    filterCss += ' contrast(115%) saturate(130%)';
+                    break;
+                case 'cyberpunk':
+                    overlayColor = 'rgba(236, 72, 153, 0.3)';
+                    blendMode = 'overlay';
+                    filterCss += ' hue-rotate(290deg) saturate(180%)';
+                    break;
+                case 'warm-vintage':
+                    overlayColor = 'rgba(245, 158, 11, 0.25)';
+                    blendMode = 'soft-light';
+                    filterCss += ' sepia(35%)';
+                    break;
+                case 'film-noir':
+                    overlayColor = 'transparent';
+                    blendMode = 'normal';
+                    filterCss += ' grayscale(100%) contrast(140%)';
+                    break;
+                case 'cold-thriller':
+                    overlayColor = 'rgba(59, 130, 246, 0.25)';
+                    blendMode = 'hard-light';
+                    filterCss += ' brightness(90%) contrast(120%)';
+                    break;
+                default:
+                    overlayColor = 'transparent';
+                    blendMode = 'normal';
+                    break;
+            }
+
+            // Apply filter styles to image and video
+            const imgEl = document.getElementById('simImageElement');
+            const videoEl = document.getElementById('simVideoElement');
+            if (imgEl) imgEl.style.filter = filterCss;
+            if (videoEl) videoEl.style.filter = filterCss;
+
+            if (overlay) {
+                overlay.style.backgroundColor = overlayColor;
+                overlay.style.mixBlendMode = blendMode;
+            }
+
+            // Vignette toggle
+            const vignetteOverlay = document.getElementById('vignetteOverlay');
+            if (vignetteOverlay) {
+                if (isVignette) vignetteOverlay.classList.remove('hidden');
+                else vignetteOverlay.classList.add('hidden');
             }
         }
 
-        // UPDATE FILTER COLOR GRADING
-        function updateColorGrading() {
-            const lutVal = document.getElementById('selectLUT').value;
-            const contrast = document.getElementById('rangeContrast').value;
-            const saturation = document.getElementById('rangeSaturation').value;
+        function resetGrading() {
+            document.getElementById('selectLUT').value = 'none';
+            document.getElementById('sliderBrightness').value = 100;
+            document.getElementById('sliderContrast').value = 100;
+            document.getElementById('sliderSaturate').value = 100;
+            document.getElementById('sliderHue').value = 0;
+            document.getElementById('sliderBlur').value = 0;
+            document.getElementById('checkVignette').checked = false;
 
-            document.getElementById('valContrast').innerText = contrast + '%';
-            document.getElementById('valSaturation').innerText = saturation + '%';
-
-            const container = document.getElementById('simMediaContainer');
-            const videoEl = document.getElementById('simVideoElement');
-            const overlay = document.getElementById('colorGradeOverlay');
-
-            const filterStr = `contrast(${contrast}%) saturate(${saturation}%)`;
-            container.style.filter = filterStr;
-            videoEl.style.filter = filterStr;
-
-            if (lutVal === 'tealOrange') {
-                overlay.style.backgroundColor = 'rgba(13, 148, 136, 0.25)';
-            } else if (lutVal === 'cyberpunk') {
-                overlay.style.backgroundColor = 'rgba(236, 72, 153, 0.3)';
-            } else if (lutVal === 'noir') {
-                container.style.filter = `grayscale(100%) contrast(${contrast}%)`;
-                videoEl.style.filter = `grayscale(100%) contrast(${contrast}%)`;
-            } else {
-                overlay.style.backgroundColor = 'rgba(245, 158, 11, 0.25)';
-            }
+            applyColorGrading();
+            showToast('Filter warna dikembalikan ke awal.');
         }
 
         function saveGradedImage() {
-            showToast('Gambar tergradasi berhasil disimpan (.png)!');
+            const imgEl = document.getElementById('simImageElement');
+            if (!imgEl || imgEl.classList.contains('hidden')) {
+                showToast('Hanya gambar yang dapat disimpan sebagai PNG!', 'warning');
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = imgEl.naturalWidth || 1200;
+            canvas.height = imgEl.naturalHeight || 675;
+
+            // Apply CSS filter on Canvas Context
+            const brightness = document.getElementById('sliderBrightness').value;
+            const contrast = document.getElementById('sliderContrast').value;
+            const saturate = document.getElementById('sliderSaturate').value;
+            const hue = document.getElementById('sliderHue').value;
+
+            ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg)`;
+            ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height);
+
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = 'hasil-color-grading-smk.png';
+            a.click();
+
+            showToast('Hasil Color Grading disimpan sebagai PNG!');
         }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toastNotification');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            if (!toast || !toastMessage || !toastIcon) return;
+
+            toastMessage.innerText = message;
+            if (type === 'warning') {
+                toastIcon.className = 'fa-solid fa-triangle-exclamation text-amber-500';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-check text-red-500';
+            }
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initial setup on load
+        window.onload = function() {
+            applyColorGrading();
+        };
     </script>
 </body>
 </html>
