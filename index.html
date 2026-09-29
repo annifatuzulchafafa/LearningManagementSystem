@@ -679,7 +679,7 @@
             document.getElementById('scriptParenthetical').value = '(menatap viewfinder kamera)';
             document.getElementById('scriptDialog').value = 'Siti, atur aperture di f/2.8 agar background-nya mendapatkan bokeh yang sinematik!';
             document.getElementById('scriptVoice').value = 'Narator (VO): Penguasaan pencahayaan dan framing adalah kunci visual dalam produksi perfilman SMK.';
-            document.getElementById('scriptTransition').value = 'CUT TO';
+            document.getElementById('scriptTransition').value = '';
             showToast('Contoh naskah berhasil dimuat!');
         }
 
@@ -690,7 +690,7 @@
             const parenthetical = document.getElementById('scriptParenthetical').value || '(antusias)';
             const dialog = document.getElementById('scriptDialog').value || 'Proses perekaman video siap dimulai!';
             const voice = document.getElementById('scriptVoice').value || 'Narator (VO): Dunia penyiaran membutuhkan kedisiplinan dan kreativitas tinggi.';
-            const transition = document.getElementById('scriptTransition').value || 'CUT TO';
+            const transition = document.getElementById('scriptTransition').value || '';
             
             const outputBox = document.getElementById('instantOutputBox');
             const statusTag = document.getElementById('outputStatusTag');
