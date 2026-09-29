@@ -926,12 +926,97 @@
             showToast('Filter warna dikembalikan ke awal.');
         }
 
-        function saveGradedImage() {
-            const imgEl = document.getElementById('simImageElement');
-            if (!imgEl || imgEl.classList.contains('hidden')) {
-                showToast('Hanya gambar yang dapat disimpan sebagai PNG!', 'warning');
-                return;
-            }
+function saveGradedImage() {
+    const imgEl = document.getElementById('simImageElement');
+    if (!imgEl || imgEl.classList.contains('hidden')) {
+        showToast('Hanya gambar yang dapat disimpan sebagai PNG!', 'warning');
+        return;
+    }
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Gunakan ukuran asli gambar agar resolusi tetap jernih
+    canvas.width = imgEl.naturalWidth || 1200;
+    canvas.height = imgEl.naturalHeight || 675;
+
+    // 1. Ambil nilai slider & kontrol saat ini
+    const lut = document.getElementById('selectLUT').value;
+    const brightness = document.getElementById('sliderBrightness').value;
+    const contrast = document.getElementById('sliderContrast').value;
+    const saturate = document.getElementById('sliderSaturate').value;
+    const hue = document.getElementById('sliderHue').value;
+    const blur = document.getElementById('sliderBlur').value;
+    const isVignette = document.getElementById('checkVignette').checked;
+
+    // 2. Filter CSS dasar dari slider
+    let filterCss = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg) blur(${blur}px)`;
+    let overlayColor = 'transparent';
+    let blendMode = 'source-over';
+
+    // 3. Efek tambahan khusus Preset LUT
+    switch (lut) {
+        case 'teal-orange':
+            overlayColor = 'rgba(0, 180, 216, 0.25)';
+            blendMode = 'color-burn';
+            filterCss += ' contrast(115%) saturate(130%)';
+            break;
+        case 'cyberpunk':
+            overlayColor = 'rgba(236, 72, 153, 0.3)';
+            blendMode = 'overlay';
+            filterCss += ' hue-rotate(290deg) saturate(180%)';
+            break;
+        case 'warm-vintage':
+            overlayColor = 'rgba(245, 158, 11, 0.25)';
+            blendMode = 'soft-light';
+            filterCss += ' sepia(35%)';
+            break;
+        case 'film-noir':
+            overlayColor = 'transparent';
+            blendMode = 'source-over';
+            filterCss += ' grayscale(100%) contrast(140%)';
+            break;
+        case 'cold-thriller':
+            overlayColor = 'rgba(59, 130, 246, 0.25)';
+            blendMode = 'hard-light';
+            filterCss += ' brightness(90%) contrast(120%)';
+            break;
+    }
+
+    // 4. Gambar media utama dengan filter dasar + preset filter
+    ctx.filter = filterCss;
+    ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height);
+
+    // 5. Terapkan Lapisan Warna Overlay Preset (Color Grading)
+    if (overlayColor !== 'transparent') {
+        ctx.filter = 'none'; // Reset filter agar overlay warna murni
+        ctx.globalCompositeOperation = blendMode; // Set mode perpaduan warna
+        ctx.fillStyle = overlayColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // 6. Terapkan Efek Vignette (Sudut Gelap)
+    if (isVignette) {
+        ctx.globalCompositeOperation = 'source-over'; // Reset mode perpaduan
+        const gradient = ctx.createRadialGradient(
+            canvas.width / 2, canvas.height / 2, canvas.width * 0.35,
+            canvas.width / 2, canvas.height / 2, canvas.width * 0.75
+        );
+        gradient.addColorStop(0, 'rgba(0,0,0,0)');
+        gradient.addColorStop(1, 'rgba(0,0,0,0.85)');
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // 7. Proses unduh file PNG
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'hasil-color-grading-smk.png';
+    a.click();
+
+    showToast('Hasil Color Grading disimpan sebagai PNG!');
+}
 
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
