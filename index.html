@@ -944,8 +944,9 @@
             const contrast = document.getElementById('sliderContrast').value;
             const saturate = document.getElementById('sliderSaturate').value;
             const hue = document.getElementById('sliderHue').value;
-
-            ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg)`;
+            const blur = document.getElementById('sliderBlur').value;
+            
+            ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg) blur(${blur}px)`;
             ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height);
 
             const a = document.createElement('a');
