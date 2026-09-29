@@ -446,12 +446,12 @@
                             </div>
                         </div>
 
-                        <!-- Canvas Frame Viewport -->
-                        <div id="viewfinderFrame" class="relative w-full aspect-video rounded-2xl bg-black overflow-hidden flex items-center justify-center border border-neutral-800 group">
-                            <!-- Background Image Preview -->
-                            <img id="simImageElement" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80" alt="Sample Media" class="w-full h-full object-cover transition-all duration-200">
-                            <!-- Background Video Preview (Hidden by default) -->
-                            <video id="simVideoElement" class="w-full h-full object-cover hidden" muted loop playsinline></video>
+                       <!-- Canvas Frame Viewport -->
+<div id="viewfinderFrame" class="relative w-full aspect-video max-h-[450px] rounded-2xl bg-black overflow-hidden flex items-center justify-center border border-neutral-800 group">
+  <!-- Background Image Preview -->
+  <img id="simImageElement" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80" alt="Sample Media" class="w-full h-full object-contain transition-all duration-200">
+  <!-- Background Video Preview (Hidden by default) -->
+  <video id="simVideoElement" class="w-full h-full object-contain hidden" muted loop playsinline></video>
                             
                             <!-- Vignette & Tint Overlays -->
                             <div id="colorGradeOverlay" class="absolute inset-0 pointer-events-none transition-all duration-200"></div>
