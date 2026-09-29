@@ -369,7 +369,6 @@
                                     <label class="text-xs font-bold text-slate-300">Ekspresi / Parenthetical</label>
                                     <input type="text" id="scriptParenthetical" placeholder="(tersenyum antusias)" class="w-full bg-neutral-950 border border-neutral-800 rounded-2xl px-4 py-3 text-xs text-white focus:outline-none focus:border-red-600 transition">
                                 </div>
-                            </div>
                             <div class="space-y-1">
                                 <label class="text-xs font-bold text-slate-300">4. Dialog Karakter</label>
                                 <textarea id="scriptDialog" rows="2" placeholder="Pastikan pencahayaan key light dan fill light seimbang agar sudut pengambilan gambar presisi!" class="w-full bg-neutral-950 border border-neutral-800 rounded-2xl p-3.5 text-xs text-white focus:outline-none focus:border-red-600 resize-none transition"></textarea>
@@ -378,7 +377,10 @@
                                 <label class="text-xs font-bold text-slate-300">5. Talking Voice / Voice Over (VO)</label>
                                 <textarea id="scriptVoice" rows="2" placeholder="Narator (VO): Belajar videografi mendidik siswa berfikir kreatif dan teliti." class="w-full bg-neutral-950 border border-neutral-800 rounded-2xl p-3.5 text-xs text-white focus:outline-none focus:border-red-600 resize-none transition"></textarea>
                             </div>
-                        </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-300">6. Transition</label>
+                                <input type="text" id="scriptTransition" placeholder="CUT TO:" class="w-full bg-neutral-950 border border-neutral-800 rounded-2xl px-4 py-3 text-xs text-white focus:outline-none focus:border-red-600 transition">
+                             </div>
 
                         <button onclick="generateStructuredScript()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-sm shadow-glow transition flex items-center justify-center gap-2">
                             <span>Susun Format Naskah Otomatis</span>
@@ -677,7 +679,7 @@
             document.getElementById('scriptParenthetical').value = '(menatap viewfinder kamera)';
             document.getElementById('scriptDialog').value = 'Siti, atur aperture di f/2.8 agar background-nya mendapatkan bokeh yang sinematik!';
             document.getElementById('scriptVoice').value = 'Narator (VO): Penguasaan pencahayaan dan framing adalah kunci visual dalam produksi perfilman SMK.';
-            
+            document.getElementById('scriptTransition').value = 'CUT TO';
             showToast('Contoh naskah berhasil dimuat!');
         }
 
@@ -688,7 +690,8 @@
             const parenthetical = document.getElementById('scriptParenthetical').value || '(antusias)';
             const dialog = document.getElementById('scriptDialog').value || 'Proses perekaman video siap dimulai!';
             const voice = document.getElementById('scriptVoice').value || 'Narator (VO): Dunia penyiaran membutuhkan kedisiplinan dan kreativitas tinggi.';
-
+            const transition = document.getElementById('scriptTransition').value || 'CUT TO';
+            
             const outputBox = document.getElementById('instantOutputBox');
             const statusTag = document.getElementById('outputStatusTag');
 
@@ -707,7 +710,8 @@
                             <p class="text-slate-300 italic">${voice}</p>
                         </div>
                     ` : ''}
-                </div>
+                    ${transition ? `<p class="font-bold text-white text-right tracking-widest uppercase mt-4">${transition}</p>` : ''}
+        </div>
             `;
 
             if (outputBox) outputBox.innerHTML = formattedHtml;
