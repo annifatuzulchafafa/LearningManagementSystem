@@ -1018,30 +1018,6 @@ function saveGradedImage() {
     showToast('Hasil Color Grading disimpan sebagai PNG!');
 }
 
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = imgEl.naturalWidth || 1200;
-            canvas.height = imgEl.naturalHeight || 675;
-
-            // Apply CSS filter on Canvas Context
-            const brightness = document.getElementById('sliderBrightness').value;
-            const contrast = document.getElementById('sliderContrast').value;
-            const saturate = document.getElementById('sliderSaturate').value;
-            const hue = document.getElementById('sliderHue').value;
-            const blur = document.getElementById('sliderBlur').value;
-            
-            ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg) blur(${blur}px)`;
-            ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height);
-
-            const a = document.createElement('a');
-            a.href = canvas.toDataURL('image/png');
-            a.download = 'hasil-color-grading-smk.png';
-            a.click();
-
-            showToast('Hasil Color Grading disimpan sebagai PNG!');
-        }
-
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toastNotification');
             const toastMessage = document.getElementById('toastMessage');
